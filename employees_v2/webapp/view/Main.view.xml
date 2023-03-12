@@ -1,0 +1,27 @@
+<mvc:View controllerName="logaligroup.employeesv2.controller.Main" xmlns:f="sap.f" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" displayBlock="true" xmlns="sap.m">
+    <Page showHeader="false">
+        <content>
+            <f:FlexibleColumnLayout id="fcl" backgroundDesign="Solid" layout="{Layouts>/ActiveKey}">
+                <f:beginColumnPages>
+                    <mvc:XMLView id="masterEmployee" viewName="logaligroup.employeesv2.view.MasterEmployee" />
+                </f:beginColumnPages>
+                <f:midColumnPages>
+                    <mvc:XMLView id="detailEmployee" viewName="logaligroup.employeesv2.view.EmployeeDetails" />
+                </f:midColumnPages>
+                <f:endColumnPages>
+                    <Page>
+                        <content />
+                    </Page>
+                </f:endColumnPages>
+            </f:FlexibleColumnLayout>
+        </content>
+        <footer>
+            <Toolbar>
+                <Label text="Layout" />
+                <Select items="{Layouts>/Layout}" selectedKey="{Layouts>/ActiveKey}">
+                    <core:Item key="{Layouts>Key}" text="{Layouts>Text}" />
+                </Select>
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>

@@ -1,0 +1,34 @@
+<c:FragmentDefinition xmlns="sap.m" xmlns:c="sap.ui.core">
+    <Table items="{odataNortwhind>Orders}" width="700px">
+        <columns>
+            <Column>
+                <header>
+                    <Label text="Order ID" />
+                </header>
+            </Column>
+            <Column>
+                <header>
+                    <Label text="Peso" />
+                </header>
+            </Column>
+            <Column>
+                <header>
+                    <Label text="Direccion" />
+                </header>
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem type="Navigation" press="ordersToDetails">
+                <cells>
+                    <Text text="{odataNortwhind>OrderID}" />
+                </cells>
+                <cells>
+                    <Text text="{odataNortwhind>Freight}" />
+                </cells>
+                <cells>
+                    <Text text="{odataNortwhind>ShipAddress}" />
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+</c:FragmentDefinition>

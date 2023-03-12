@@ -1,0 +1,99 @@
+<mvc:View
+    xmlns:form="sap.ui.layout.form"
+    controllerName="logaligroup.employeesv2.controller.OrderDetails"
+    xmlns:sc="logaligroup.employeesv2.control"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+    displayBlock="true"
+    height="100%"
+    busyIndicatorDelay="0"
+>
+    <Page>
+        <customHeader>
+            <Bar design="Auto" titleAlignment="None">
+                <contentLeft>
+                    <Button icon="sap-icon://nav-back" press="onBack" />
+                </contentLeft>
+                <contentMiddle>
+                    <Text text="Order Details" />
+                </contentMiddle>
+            </Bar>
+        </customHeader>
+        <content>
+            <Panel headerText="ID Cliente {odataNorthwind>CustomerID}">
+                <l:Grid defaultSpan="L6 M6 S12">
+                    <form:Form editable="false">
+                        <f:layout>
+                            <f:ResponsiveGridLayout labelSpanL="6" labelSpanM="6" labelSpanS="12" />
+                        </f:layout>
+
+                        <form:FormContainer>
+                            <f:formElements>
+                                <f:FormElement label="Fecha Orden:">
+                                    <form:fields>
+                                        <Text text="{path: 'odataNortwhind>OrderDate', type: 'sap.ui.model.odata.type.Date'}" />
+                                    </form:fields>
+                                </f:FormElement>
+
+                                <f:FormElement label="Peso">
+                                    <form:fields>
+                                        <Text text="{odataNortwhind>Freight}" />
+                                    </form:fields>
+                                </f:FormElement>
+
+                                <f:FormElement label="Cliente">
+                                    <form:fields>
+                                        <Text text="{odataNortwhind>ShipName}" />
+                                    </form:fields>
+                                </f:FormElement>
+
+                                <f:FormElement label="Direccion">
+                                    <form:fields>
+                                        <Text text="{odataNortwhind>ShipAddress}, {odataNortwhind>ShipCity}, {odataNortwhind>ShipCountry}" />
+                                    </form:fields>
+                                </f:FormElement>
+                            </f:formElements>
+                        </form:FormContainer>
+                    </form:Form>
+                    <FlexBox>
+                        <sc:Signature id="signature" />
+                        <Button text="Limpiar Firma" press="clearSignature" />
+                    </FlexBox>
+                </l:Grid>
+                <UploadCollection
+                    id="uploadCollection"
+                    maximumFileSize="10"
+                    maximumFilenameLength="55"
+                    multiple="true"
+                    sameFilenameAllowed="true"
+                    instantUpload="true"
+                    uploadUrl="/sap/opu/odata/sap/YSAPUI5_SRV_01/FilesSet"
+                    change="onFileChange"
+                    uploadComplete="onFileUploadComplete"
+                    beforeUploadStarts="onFileBeforeUpload"
+                    fileDeleted="onFileDelete"
+                >
+                    <headerParameters />
+                    <infoToolbar />
+                    <items />
+                    <parameters />
+                    <toolbar />
+                </UploadCollection>
+            </Panel>
+            <Panel headerText=" Productos del Pedido ">
+                <content>
+                    <List items="{path: 'odataNortwhind>Order_Details' , parameters: {expand: 'Product'}, factory: '.factoryOrderDetails'}" />
+                </content>
+            </Panel>
+        </content>
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer />
+                <Button text="Grabar Firma" press="onSaveSignature" />
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>

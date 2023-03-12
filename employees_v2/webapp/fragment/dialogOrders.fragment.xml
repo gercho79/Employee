@@ -1,0 +1,10 @@
+<c:FragmentDefinition xmlns:table="sap.ui.table" xmlns="sap.m" xmlns:c="sap.ui.core">
+    <Dialog title="Ordenes">
+        <content>
+            <c:Fragment fragmentName="logaligroup.employeesv2.fragment.TableOrders" type="XML" />
+        </content>
+        <endButton>
+            <Button text="Close" press="closeDialog" />
+        </endButton>
+    </Dialog>
+</c:FragmentDefinition>

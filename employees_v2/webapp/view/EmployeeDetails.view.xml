@@ -1,0 +1,69 @@
+<mvc:View controllerName="logaligroup.employeesv2.controller.EmployeeDetails" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:c="sap.ui.core" displayBlock="true" height="100%" busyIndicatorDelay="0">
+    <Page title="Detalle Empleado">
+        <content>
+            <Panel>
+                <FlexBox height="50%" alignItems="Center" justifyContent="Center">
+                    <items>
+                        <Text text="{odataNortwhind>TitleOfCourtesy},{odataNortwhind>FirstName}" class="boldText" />
+                    </items>
+                </FlexBox>
+                <FlexBox alignItems="Start" justifyContent="SpaceBetween">
+                    <items>
+                        <VBox>
+                            <Text text="ID Empleado" class="boldText sapUiTiniMarginEnd" />
+                            <Text text="{odataNortwhind>EmployeeID}" />
+                        </VBox>
+                        <VBox>
+                            <Text text="Titulo Empleado" class="boldText sapUiTiniMarginEnd" />
+                            <Text text="{odataNortwhind>Title}" />
+                        </VBox>
+                    </items>
+                </FlexBox>
+                <FlexBox alignItems="Start">
+                    <items>
+                        <HBox>
+                            <items>
+                                <Text text="Pais" class="boldText sapUiTiniMarginEnd" />
+                                <Text text="{odataNortwhind>Country}" />
+                            </items>
+                            <layoutData>
+                                <FlexItemData growFactor="3" />
+                            </layoutData>
+                        </HBox>
+                        <HBox>
+                            <items>
+                                <Text text="Ciudad" class="boldText sapUiTiniMarginEnd" />
+                                <Text text="{odataNortwhind>City}" />
+                            </items>
+                            <layoutData>
+                                <FlexItemData growFactor="2" />
+                            </layoutData>
+                        </HBox>
+                        <FlexBox direction="Row">
+                            <items>
+                                <Text text="Codigo postal" class="boldText sapUiTiniMarginEnd" />
+                                <Text text="{odataNortwhind>PostalCode}" />
+                            </items>
+                            <layoutData>
+                                <FlexItemData growFactor="1" />
+                            </layoutData>
+                        </FlexBox>
+                    </items>
+                </FlexBox>
+            </Panel>
+            <Panel class="sapUISizeCompact" backgroundDesign="Transparent" expandable="true">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="Incidentes {= ${odataNortwhind>Country} !== 'USA' ? ${i18n>europe} : ${i18n>uniteState} }" />
+                        <ToolbarSpacer />
+                        <Button text="Crear Incidencias" press="onCreateIncidence" />
+                    </Toolbar>
+                </headerToolbar>
+                <Panel id="tableIncidence" class="sapUiContentPadding" backgroundDesign="Transparent" />
+            </Panel>
+            <Panel class="sapUISizeCompact" backgroundDesign="Transparent" headerText="Ordenes" expandable="true">
+                <c:Fragment fragmentName="logaligroup.employeesv2.fragment.TableOrders" type="XML" />
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>

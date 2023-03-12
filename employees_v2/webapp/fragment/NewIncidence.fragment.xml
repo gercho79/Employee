@@ -1,0 +1,41 @@
+<c:FragmentDefinition xmlns="sap.m" xmlns:c="sap.ui.core">
+    <Panel>
+        <headerToolbar>
+            <Toolbar>
+                <c:Icon src="{= ${incidentModel>Type}=== '0' ? 'sap-icon://accept'  : 
+					${incidentModel>Type}=== '1' ? 'sap-icon://alert'   : 
+					${incidentModel>Type}=== '2' ? 'sap-icon://decline' : '' }" />
+                <Text text="Incidencias {= ${incidentModel>IncidenceId} ? parseInt(${incidentModel>IncidenceId}) : ' '} - Fecha Creacion: {
+					path: 'incidentModel>CreationDate',
+					formatter: '.Formatter.dateFormat'
+				}" />
+                <ToolbarSpacer />
+                <Button icon="sap-icon://save" press="onSaveIncident" enabled="{= ${incidentModel>EnabledSave} === true}" />
+                <c:Icon src="delete" press="onDeleteincidence" />
+            </Toolbar>
+        </headerToolbar>
+        <content>
+            <HBox>
+                <VBox class="sapUiSmallMarginEnd">
+                    <Label text="{i18n>incidentDate}" required="true" />
+                    <DatePicker dateValue="{incidentModel>CreationDate}" change="updateIncidenceCreationDate" valueState="{incidentModel>CreationDateState}" />
+                    <VBox visible="{= ${incidentModel>CreationDate} !== '' &amp;&amp; ${incidentModel>CreationDate} !== undefined }" class="sapUiSmallMarginEnd">
+                        <Label text="{i18n>incidentReason}" required="true" />
+
+                        <Input value="{incidentModel>Reason}" change="updateIncidenceReason" valueState="{incidentModel>ReasonState}" />
+                    </VBox>
+                </VBox>
+                <VBox>
+                    <Text text="Tipo" />
+                    <Select selectedKey="{incidentModel>Type}" forceSelection="false" change="updateIncidenceType">
+                        <items>
+                            <c:Item key="0" text="Ok" />
+                            <c:Item key="1" text="Error" />
+                            <c:Item key="2" text="Pendiente" />
+                        </items>
+                    </Select>
+                </VBox>
+            </HBox>
+        </content>
+    </Panel>
+</c:FragmentDefinition>

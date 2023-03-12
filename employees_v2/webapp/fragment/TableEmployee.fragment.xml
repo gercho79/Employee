@@ -1,0 +1,61 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+	<Panel>
+		<Button
+			text="ShowCity"
+			visible="{ConfigView>/VisibleBtnShowCity}"
+			press="onHandlerShowCity"
+		/>
+		<Button
+			text="HideCity"
+			visible="{ConfigView>/VisibleBtnHideCity}"
+			press="onHandlerHideCity"
+		/>
+		<Table
+			id="Table01"
+			items="{odataNortwhind>/Employees}"
+		>
+			<columns>
+				<Column>
+					<Text text="Employee Id"/>
+				</Column>
+				<Column>
+					<Text text="Name"/>
+				</Column>
+				<Column>
+					<Text text="Country"/>
+				</Column>
+				<Column visible="{ConfigView>/VisibleCity}">
+					<Text text="City"/>
+				</Column>
+				<Column width="100px">
+					<Text text="Detalle"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem
+					type="Navigation"
+					press="showDetails"
+				>
+					<cells>
+						<Label text="{odataNortwhind>EmployeeID}"/>
+					</cells>
+					<cells>
+						<Label text="{odataNortwhind>LastName}"/>
+					</cells>
+					<cells>
+						<Label text="{odataNortwhind>Country}"/>
+					</cells>
+					<cells>
+						<Label text="{odataNortwhind>City}"/>
+					</cells>
+					<cells>
+						<c:Icon src="sap-icon://show" press="showOrdersDialog"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</Panel>
+</c:FragmentDefinition>
